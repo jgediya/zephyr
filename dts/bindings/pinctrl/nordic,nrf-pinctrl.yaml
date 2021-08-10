@@ -1,0 +1,70 @@
+# Copyright (c) 2021 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+    nRF pin controller
+
+compatible: "nordic,nrf-pinctrl"
+
+include:
+    - name: base.yaml
+    - name: pincfg-node-group.yaml
+      child-binding:
+        child-binding:
+          property-allowlist:
+            - bias-disable
+            - bias-pull-down
+            - bias-pull-up
+            - low-power-enable
+
+child-binding:
+  description: |
+    nRF pin controller pin configuration nodes. Each node is composed by one or
+    more groups, each defining the configuration for a set of pins.
+
+  child-binding:
+    description: |
+      nRF pin controller pin configuration group. Each group contains a list of
+      pins sharing the same set of properties. Example:
+
+      uart0_default: uart0_default {
+        /* group 1 (name is arbitrary) */
+        pins1 {
+          /* configure P0.1 as UART_TX and P0.2 as UART_RTS */
+          pins = <NRF_PIN(0, 1, UART_TX)>, <NRF_PIN(0, 2, UART_RTS)>;
+        };
+        /* group 2 (name is arbitrary) */
+        pins2 {
+          /* configure P0.3 as UART_RX and P0.4 as UART_CTS */
+          pins = <NRF_PIN(0, 3, UART_RX)>, <NRF_PIN(0, 4, UART_CTS)>;
+          /* both P0.3 and P0.4 are configured with pull-up */
+          bias-pull-up;
+        };
+      };
+
+      The list of supported standard properties:
+
+      - bias-disable: Disable pull-up/down (default behavior, not required).
+      - bias-pull-up: Enable pull-up resistor.
+      - bias-pull-down: Enable pull-down resistor.
+      - low-power-enable: Configure pin as an input with input buffer
+        disconnected.
+
+      Note that bias options are mutually exclusive.
+
+    properties:
+      pins:
+        required: true
+        type: array
+        description: |
+          An array of pins sharing the same group properties. The pins should
+          be defined using the NRF_PIN utility macro that encodes the port,
+          pin and function.
+
+      drive-mode:
+        type: int
+        default: 0
+        description: |
+          Pin output drive mode. Available drive modes are pre-defined in
+          nrf-pinctrl.h. Note that extra modes may not be available on certain
+          devices. Defaults to standard mode for 0 and 1 (NRF_DRIVE_S0S1).
