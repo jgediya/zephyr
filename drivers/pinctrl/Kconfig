@@ -1,0 +1,38 @@
+# Copyright (c) 2021 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig PINCTRL
+	bool "Enable pin controller drivers"
+
+if PINCTRL
+
+config PINCTRL_STORE_REG
+	bool
+	help
+	  This option must be selected by drivers that require access to the device
+	  register address. This can happen, for example, if certain pin control
+	  actions are device dependent or require access to device specific
+	  registers
+
+config PINCTRL_NON_STATIC
+	bool
+	help
+	  This option can be selected if the pin control configuration defined by
+	  a driver has to be accessed externally. This can happen, for example, when
+	  dynamic pin control is enabled or in testing environments.
+
+config PINCTRL_TEST_STORE_REG
+	bool "Store register address (testing)"
+	select PINCTRL_STORE_REG
+	help
+	  This option should be selected by unit tests that want to store the
+	  register address of devices.
+
+config PINCTRL_TEST_NON_STATIC
+	bool "Enable access to pin control configuration (testing)"
+	select PINCTRL_NON_STATIC
+	help
+	  This option should be selected by unit tests that need to access the pin
+	  control configuration defined in a device driver.
+
+endif # PINCTRL
