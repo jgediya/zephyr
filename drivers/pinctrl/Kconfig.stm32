@@ -1,0 +1,10 @@
+# Copyright (c) 2021 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+config PINCTRL_STM32
+	bool "Pin controller driver for STM32 MCUs"
+	depends on SOC_FAMILY_STM32
+	select PINCTRL_STORE_REG if SOC_SERIES_STM32F1X
+	default y
+	help
+	  Enable pin controller driver for STM32 MCUs
