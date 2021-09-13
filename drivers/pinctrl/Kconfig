@@ -35,4 +35,12 @@ config PINCTRL_TEST_NON_STATIC
 	  This option should be selected by unit tests that need to access the pin
 	  control configuration defined in a device driver.
 
+config PINCTRL_DYNAMIC
+	bool "Enable dynamic configuration of pins"
+	select PINCTRL_NON_STATIC
+	help
+	  When this option is enabled pin control configuration can be changed at
+	  runtime. This can be useful, for example, to change the pins assigned to a
+	  peripheral at early boot stages depending on a certain input.
+
 endif # PINCTRL
