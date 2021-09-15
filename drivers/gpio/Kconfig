@@ -15,6 +15,12 @@ module = GPIO
 module-str = gpio
 source "subsys/logging/Kconfig.template.log_config"
 
+config GPIO_INIT_PRIORITY
+	int "GPIO devices init priority"
+	default 50
+	help
+	  GPIO devices initialization priority.
+
 config GPIO_SHELL
 	bool "Enable GPIO Shell"
 	depends on SHELL
