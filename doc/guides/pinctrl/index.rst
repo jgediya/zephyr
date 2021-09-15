@@ -196,6 +196,9 @@ or pin configurations, though). The user can then use
 device driver will apply the pin configurations stored in the updated states
 when it applies a state.
 
+A full featured example is available at
+:ref:`samples_boards_nrf_dynamic_pinctrl`.
+
 Devicetree representation
 *************************
 

@@ -1,0 +1,31 @@
+/ {
+	zephyr,user {
+		uart0_alt_default = <&uart0_alt_default>;
+		uart0_alt_sleep = <&uart0_alt_sleep>;
+	};
+};
+
+&pinctrl {
+	/* Alternative pins for UART0 */
+	uart0_alt_default: uart0_alt_default {
+		pins1 {
+			pins = <NRF_PIN(1, 5, UART_TX)>,
+			       <NRF_PIN(1, 4, UART_RTS)>;
+		};
+		pins2 {
+			pins = <NRF_PIN(1, 7, UART_RX)>,
+			       <NRF_PIN(1, 6, UART_CTS)>;
+			bias-pull-up;
+		};
+	};
+
+	uart0_alt_sleep: uart0_alt_sleep {
+		pins1 {
+			pins = <NRF_PIN(1, 5, UART_TX)>,
+			       <NRF_PIN(1, 7, UART_RX)>,
+			       <NRF_PIN(1, 4, UART_RTS)>,
+			       <NRF_PIN(1, 6, UART_CTS)>;
+			low-power-enable;
+		};
+	};
+};
