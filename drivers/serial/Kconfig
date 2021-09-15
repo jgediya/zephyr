@@ -10,6 +10,12 @@ menuconfig SERIAL
 
 if SERIAL
 
+config SERIAL_INIT_PRIORITY
+	int "Serial devices init priority"
+	default 50
+	help
+	  Serial devices initialization priority.
+
 comment "Capabilities"
 
 config SERIAL_HAS_DRIVER
