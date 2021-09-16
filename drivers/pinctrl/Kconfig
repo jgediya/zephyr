@@ -46,4 +46,11 @@ config PINCTRL_DYNAMIC
 source "drivers/pinctrl/Kconfig.nrf"
 source "drivers/pinctrl/Kconfig.stm32"
 
+config PINCTRL_NXP_MCUX
+	bool "Pin controller driver for NXP Kinetis MCUs"
+	depends on SOC_FAMILY_KINETIS
+	default y
+	help
+	  Enable pin controller driver for NXP Kinetis MCUs
+
 endif # PINCTRL

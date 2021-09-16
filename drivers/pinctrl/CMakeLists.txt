@@ -4,4 +4,5 @@
 zephyr_library()
 zephyr_library_sources(common.c)
 zephyr_library_sources_ifdef(CONFIG_PINCTRL_NRF pinctrl_nrf.c)
+zephyr_library_sources_ifdef(CONFIG_PINCTRL_NXP_MCUX pinctrl_nxp_mcux.c)
 zephyr_library_sources_ifdef(CONFIG_PINCTRL_STM32 pinctrl_stm32.c)
