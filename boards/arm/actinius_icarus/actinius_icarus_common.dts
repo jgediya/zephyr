@@ -3,6 +3,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+#include "actinius_icarus_common-pinctrl.dtsi"
 
 / {
 	model = "Actinius Icarus IoT Dev Board";
@@ -99,24 +100,25 @@
 	status = "okay";
 
 	current-speed = <115200>;
-	tx-pin = <9>;
-	rx-pin = <6>;
-	rts-pin = <7>;
-	cts-pin = <25>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &uart1 {
 	status = "okay";
 
 	current-speed = <115200>;
-	tx-pin = <24>;
-	rx-pin = <23>;
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-1 = <&uart1_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &uart2 {
 	current-speed = <115200>;
-	tx-pin = <4>;
-	rx-pin = <5>;
+	pinctrl-0 = <&uart2_default>;
+	pinctrl-1 = <&uart2_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &i2c2 {

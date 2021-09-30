@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
+#include "pinnacle_100_dvk-pinctrl.dtsi"
 
 / {
 	model = "Pinnacle 100 Dev Kit";
@@ -94,20 +95,15 @@
 	compatible = "nordic,nrf-uart";
 	status = "okay";
 	current-speed = <115200>;
-	tx-pin = <6>;
-	rx-pin = <8>;
-	rts-pin = <5>;
-	cts-pin = <7>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &uart1 {
 	compatible = "nordic,nrf-uarte";
 	status = "okay";
 	current-speed = <115200>;
-	tx-pin = <14>;
-	rx-pin = <16>;
-	rts-pin = <13>;
-	cts-pin = <15>;
 	hl7800 {
 		compatible = "swir,hl7800";
 		status = "okay";
@@ -121,6 +117,9 @@
 		mdm-uart-cts-gpios = <&gpio0 15 0>;
 		mdm-gpio6-gpios = <&gpio1 12 0>;
 	};
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-1 = <&uart1_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &i2c0 {

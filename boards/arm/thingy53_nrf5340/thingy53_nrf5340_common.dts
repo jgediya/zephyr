@@ -1,4 +1,5 @@
 /*
+#include "thingy53_nrf5340_common-pinctrl.dtsi"
  * Copyright (c) 2021 Nordic Semiconductor ASA
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -193,10 +194,9 @@
 &uart0 {
 	current-speed = <115200>;
 	status = "okay";
-	tx-pin = <12>;
-	rx-pin = <11>;
-	rts-pin = <10>;
-	cts-pin = <9>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &qspi {

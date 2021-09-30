@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52811_qfaa.dtsi>
+#include "ubx_bmd360eval_nrf52811-pinctrl.dtsi"
 
 / {
 	model = "u-blox BMD-360-EVAL EVK nRF52811";
@@ -144,10 +145,9 @@ arduino_serial: &uart0 {
 	compatible = "nordic,nrf-uarte";
 	status = "okay";
 	current-speed = <115200>;
-	tx-pin = <6>;
-	rx-pin = <8>;
-	rts-pin = <5>;
-	cts-pin = <7>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 arduino_i2c: &i2c0 {

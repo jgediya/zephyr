@@ -1,0 +1,22 @@
+/*
+ * Copyright (c) 2021 Nordic Semiconductor ASA
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+&pinctrl {
+	uart0_default: uart0_default {
+		pins1 {
+			pins = <NRF_PIN(0, 5, UART_TX)>,
+			       <NRF_PIN(0, 11, UART_RX)>;
+		};
+	};
+
+	uart0_sleep: uart0_sleep {
+		pins1 {
+			pins = <NRF_PIN(0, 5, UART_TX)>,
+			       <NRF_PIN(0, 11, UART_RX)>;
+			low-power-enable;
+		};
+	};
+
+};

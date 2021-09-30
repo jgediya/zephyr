@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52832_qfaa.dtsi>
+#include "decawave_dwm1001_dev-pinctrl.dtsi"
 
 / {
 	model = "Decawave DWM1001-DEV";
@@ -90,8 +91,9 @@
 	status = "okay";
 	compatible = "nordic,nrf-uart";
 	current-speed = <115200>;
-	tx-pin  = <5>;
-	rx-pin  = <11>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &i2c0 {

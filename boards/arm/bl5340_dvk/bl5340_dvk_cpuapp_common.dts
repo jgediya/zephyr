@@ -4,6 +4,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+#include "bl5340_dvk_cpuapp_common-pinctrl.dtsi"
 
 / {
 	chosen {
@@ -209,10 +210,9 @@
 &uart0 {
 	status = "okay";
 	current-speed = <115200>;
-	tx-pin = <20>;
-	rx-pin = <22>;
-	rts-pin = <19>;
-	cts-pin = <21>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &pwm0 {

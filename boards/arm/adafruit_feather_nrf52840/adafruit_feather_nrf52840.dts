@@ -7,6 +7,7 @@
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
 #include "feather_connector.dtsi"
+#include "adafruit_feather_nrf52840-pinctrl.dtsi"
 
 / {
 	model = "Adafruit Feather nRF52840 Express";
@@ -71,8 +72,9 @@
 	compatible = "nordic,nrf-uart";
 	current-speed = <115200>;
 	status = "okay";
-	tx-pin = <25>;
-	rx-pin = <24>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &i2c0 {

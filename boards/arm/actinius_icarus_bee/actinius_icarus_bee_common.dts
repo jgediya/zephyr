@@ -3,6 +3,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+#include "actinius_icarus_bee_common-pinctrl.dtsi"
 
 / {
 	model = "Actinius Icarus Bee";
@@ -92,10 +93,9 @@
 	status = "okay";
 
 	current-speed = <115200>;
-	tx-pin = <2>;
-	rx-pin = <5>;
-	cts-pin = <14>;
-	rts-pin = <18>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &i2c2 {

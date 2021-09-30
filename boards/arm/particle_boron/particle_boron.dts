@@ -8,6 +8,7 @@
 #include <nordic/nrf52840_qiaa.dtsi>
 #include <dt-bindings/gpio/gpio.h>
 #include "mesh_feather.dtsi"
+#include "particle_boron-pinctrl.dtsi"
 
 / {
 	model = "Particle Boron";
@@ -36,10 +37,6 @@
 	current-speed = <115200>;
 	status = "okay";
 
-	tx-pin = <37>;
-	rx-pin = <36>;
-	rts-pin = <39>;
-	cts-pin = <38>;
 	hw-flow-control;
 
 	sara_r4 {
@@ -51,4 +48,7 @@
 		mdm-reset-gpios = <&gpio0 12 0>;
 		mdm-vint-gpios = <&gpio0 2 0>;
 	};
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-1 = <&uart1_sleep>;
+	pinctrl-names = "default", "sleep";
 };

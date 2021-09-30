@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52833_qiaa.dtsi>
+#include "bl653_dvk-pinctrl.dtsi"
 
 / {
 	model = "Laird BL653 Dev Kit";
@@ -95,10 +96,9 @@
 	compatible = "nordic,nrf-uart";
 	current-speed = <115200>;
 	status = "okay";
-	tx-pin = <6>;
-	rx-pin = <8>;
-	rts-pin = <5>;
-	cts-pin = <7>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &i2c0 {

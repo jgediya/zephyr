@@ -1,0 +1,16 @@
+/*
+ * Copyright (c) 2021 Nordic Semiconductor ASA
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+&pinctrl {
+	uart1_default: uart1_default {
+	};
+
+	uart1_sleep: uart1_sleep {
+		pins1 {
+			low-power-enable;
+		};
+	};
+
+};

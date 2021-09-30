@@ -10,6 +10,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52832_qfaa.dtsi>
+#include "pinetime_devkit0-pinctrl.dtsi"
 
 / {
 	model = "Pine64 PineTime DevKit0";
@@ -79,8 +80,9 @@
 	compatible = "nordic,nrf-uart";
 	current-speed = <115200>;
 	status = "okay";
-	tx-pin = <11>;
-	rx-pin = <30>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &i2c0 {

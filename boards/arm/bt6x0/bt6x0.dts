@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
+#include "bt6x0-pinctrl.dtsi"
 
 / {
 	model = "Laird BT6x0 Sensor";
@@ -225,20 +226,18 @@
 	compatible = "nordic,nrf-uarte";
 	current-speed = <115200>;
 	status = "okay";
-	tx-pin = <6>;
-	rx-pin = <8>;
-	rts-pin = <5>;
-	cts-pin = <7>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &uart1 {
 	compatible = "nordic,nrf-uarte";
 	current-speed = <115200>;
 	status = "okay";
-	tx-pin = <16>;
-	rx-pin = <14>;
-	rts-pin = <13>;
-	cts-pin = <15>;
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-1 = <&uart1_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &i2c0 {

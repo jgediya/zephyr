@@ -7,6 +7,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
+#include "ubx_bmd340eval_nrf52840-pinctrl.dtsi"
 
 / {
 	model = "u-blox BMD-340-EVAL EVK nRF52840";
@@ -148,17 +149,17 @@
 	compatible = "nordic,nrf-uarte";
 	status = "okay";
 	current-speed = <115200>;
-	tx-pin = <6>;
-	rx-pin = <8>;
-	rts-pin = <5>;
-	cts-pin = <7>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 arduino_serial: &uart1 {
 	status = "okay";
 	current-speed = <115200>;
-	rx-pin = <33>;
-	tx-pin = <34>;
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-1 = <&uart1_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 arduino_i2c: &i2c0 {

@@ -7,6 +7,7 @@
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
 #include <dt-bindings/lora/sx126x.h>
+#include "rak4631_nrf52840-pinctrl.dtsi"
 
 / {
 	model = "RAKWireless RAK4631 WisBlock LPWAN Module with a Nordic NRF52840 SoC";
@@ -62,16 +63,18 @@
 	compatible = "nordic,nrf-uart";
 	status = "okay";
 	current-speed = <115200>;
-	tx-pin = <20>;
-	rx-pin = <19>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &uart1 {
 	compatible = "nordic,nrf-uarte";
 	current-speed = <115200>;
 	status = "okay";
-	tx-pin = <16>;
-	rx-pin = <15>;
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-1 = <&uart1_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &i2c0 {

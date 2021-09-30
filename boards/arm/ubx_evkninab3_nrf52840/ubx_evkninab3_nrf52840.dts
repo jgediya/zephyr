@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
+#include "ubx_evkninab3_nrf52840-pinctrl.dtsi"
 
 / {
 	model = "u-blox EVK NINA-B3 nRF52840";
@@ -141,10 +142,9 @@
 	compatible = "nordic,nrf-uarte";
 	status = "okay";
 	current-speed = <115200>;
-	tx-pin = <45>;
-	rx-pin = <29>;
-	rts-pin = <31>;
-	cts-pin = <44>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 arduino_i2c: &i2c0 {

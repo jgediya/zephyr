@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
+#include "contextualelectronics_abc-pinctrl.dtsi"
 
 / {
 	model = "nRF52840 BLE Cell";
@@ -37,8 +38,9 @@
 	status = "okay";
 	current-speed = <115200>;
 
-	tx-pin = <7>;
-	rx-pin = <6>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 arduino_serial: &uart1 {
@@ -46,10 +48,6 @@ arduino_serial: &uart1 {
 	current-speed = <115200>;
 
 	/* UART Pin info. */
-	rx-pin  = <20>;
-	tx-pin  = <24>;
-	rts-pin = <17>;
-	cts-pin = <16>;
 
 	/* Use hardware flow control. */
 	hw-flow-control;
@@ -64,6 +62,9 @@ arduino_serial: &uart1 {
 		mdm-reset-gpios = <&gpio1 6  0>;
 		mdm-dtr-gpios   = <&gpio0 22 0>;
 	};
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-1 = <&uart1_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 arduino_i2c: &i2c0 {

@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52833_qiaa.dtsi>
+#include "bbc_microbit_v2-pinctrl.dtsi"
 
 / {
 	model = "BBC Micro:bit V2";
@@ -83,8 +84,9 @@
 	compatible = "nordic,nrf-uart";
 	status = "okay";
 	current-speed = <115200>;
-	tx-pin = <6>;
-	rx-pin = <40>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-1 = <&uart0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 
 &i2c0 {
