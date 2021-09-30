@@ -16,3 +16,6 @@ CONFIG_UART_CONSOLE=y
 # spi
 CONFIG_SPI=y
 CONFIG_SPI_SLAVE=y
+
+# enable pin controller
+CONFIG_PINCTRL=y

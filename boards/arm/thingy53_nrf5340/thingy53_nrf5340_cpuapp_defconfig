@@ -22,3 +22,6 @@ CONFIG_UART_CONSOLE=y
 
 # Enable uart driver
 CONFIG_SERIAL=y
+
+# enable pin controller
+CONFIG_PINCTRL=y

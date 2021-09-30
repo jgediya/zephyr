@@ -24,3 +24,6 @@ CONFIG_I2C=y
 
 # ADC
 CONFIG_ADC=y
+
+# enable pin controller
+CONFIG_PINCTRL=y
