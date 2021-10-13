@@ -4,6 +4,7 @@
 config SOC_FAMILY_LPC
 	bool
 	select HAS_SEGGER_RTT
+	select PINCTRL
 
 if SOC_FAMILY_LPC
 

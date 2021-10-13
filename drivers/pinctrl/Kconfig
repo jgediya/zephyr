@@ -53,4 +53,11 @@ config PINCTRL_NXP_MCUX
 	help
 	  Enable pin controller driver for NXP Kinetis MCUs
 
+config PINCTRL_NXP_MCUX_LPC
+	bool "Pin controller driver for NXP LPC MCUs"
+	depends on SOC_FAMILY_LPC
+	default y
+	help
+	  Enable pin controller driver for NXP LPC MCUs
+
 endif # PINCTRL
