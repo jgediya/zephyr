@@ -8,6 +8,7 @@
 
 #include <errno.h>
 #include <drivers/i2c.h>
+#include <drivers/pinctrl.h>
 #include <soc.h>
 #include <fsl_i2c.h>
 #include <fsl_clock.h>
@@ -30,6 +31,7 @@ struct i2c_mcux_config {
 	clock_name_t clock_source;
 	void (*irq_config_func)(const struct device *dev);
 	uint32_t bitrate;
+	const struct pinctrl_dev_config *pincfg;
 };
 
 struct i2c_mcux_data {
@@ -47,6 +49,12 @@ static int i2c_mcux_configure(const struct device *dev,
 	const struct i2c_mcux_config *config = DEV_CFG(dev);
 	uint32_t clock_freq;
 	uint32_t baudrate;
+	int ret;
+
+	ret = pinctrl_apply_state(config->pincfg, PINCTRL_STATE_DEFAULT);
+	if (ret < 0) {
+		return ret;
+	}
 
 	if (!(I2C_MODE_MASTER & dev_config_raw)) {
 		return -EINVAL;
@@ -221,11 +229,14 @@ static const struct i2c_driver_api i2c_mcux_driver_api = {
 #define I2C_DEVICE_INIT_MCUX(n)			\
 	static void i2c_mcux_config_func_ ## n(const struct device *dev); \
 									\
+	PINCTRL_DT_INST_DEFINE(n)					\
+									\
 	static const struct i2c_mcux_config i2c_mcux_config_ ## n = {	\
 		.base = (I2C_Type *)DT_INST_REG_ADDR(n),\
 		.clock_source = I2C ## n ## _CLK_SRC,			\
 		.irq_config_func = i2c_mcux_config_func_ ## n,		\
 		.bitrate = DT_INST_PROP(n, clock_frequency),		\
+		.pincfg = PINCTRL_DT_INST_DEV_CONFIG_GET(n),		\
 	};								\
 									\
 	static struct i2c_mcux_data i2c_mcux_data_ ## n;		\
